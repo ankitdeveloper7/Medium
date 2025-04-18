@@ -8,6 +8,7 @@
     "@prisma/client": "^6.5.0",
     "@prisma/extension-accelerate": "^1.3.0",
     "hono": "^4.7.6",
+    "medium-clone-common-modules": "^1.0.0",
     "prisma": "^6.5.0"
   },
   "devDependencies": {
