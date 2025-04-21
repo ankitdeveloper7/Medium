@@ -1,4 +1,8 @@
  export const Landingheader = () =>{
+
+    function openSignup(){
+        {window.open("/signup", "_self")}
+    }
     return (
         <>
         <section>
@@ -11,7 +15,7 @@
                 <a className="pr-8" href="#">Write</a>
                 </span>
                 <a className="pr-8" href="#">Sign in</a>
-               <button className="text-white bg-black rounded-full px-4 py-2">Get Started</button>
+               <button className="text-white bg-black rounded-full px-4 py-2 cursor-pointer" onClick={openSignup}>Get Started</button>
             </div>
         </div>
         </section>
