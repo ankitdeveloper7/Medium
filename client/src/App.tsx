@@ -5,6 +5,7 @@ import Blog from "./pages/Blog";
 import {Home} from "./pages/Landingpage/Home";
 import { Mainpage } from "./pages/Mainpage";
 import { BlogEditor } from "./pages/BlogEditor";
+import { Auth } from "./auth/Auth";
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/writeblog" element={<BlogEditor />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
       </BrowserRouter>
     </>

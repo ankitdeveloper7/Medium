@@ -1,7 +1,7 @@
  export const Landingheader = () =>{
 
     function openSignup(){
-        {window.open("/signup", "_self")}
+        {window.open("/auth", "_self")}
     }
     return (
         <>
