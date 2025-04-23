@@ -8,7 +8,7 @@ export const Header = () =>{
     }
     return(
         <>
-            <section className=" border-b-1 border-[#f9f9f9]">
+            <section className=" border-b-1 border-slate-100">
            <div className="relative max-w-8xl mx-8 px-8 py-4 align-bottom">
            <div className="inline-block align-bottom">
             <div className="inline-block text-4xl font-serif font-semibold align-baseline">Medium</div>

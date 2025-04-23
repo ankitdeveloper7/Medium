@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { decode, sign, verify } from 'hono/jwt'
+import { signupInput, SigninInput, signinInput } from 'medium-clone-common-modules';
 
 
 export const userRouters = new Hono<{
@@ -13,6 +14,13 @@ export const userRouters = new Hono<{
 
 userRouters.post('/signup', async (c) => {
   const body = await c.req.json();
+  const {success} = signupInput.safeParse(body);
+  if(!success){
+    c.status(411);
+    return c.json({
+      message:"your information is wrong"
+    })
+  }
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
@@ -42,6 +50,13 @@ userRouters.post('/signup', async (c) => {
 
 userRouters.post('/signin', async (c) => {
   const body = await c.req.json();
+  const {success} = signinInput.safeParse(body);
+  if(!success){
+    c.status(411);
+    return c.json({
+      message:"your information is wrong"
+    })
+  }
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
