@@ -17,7 +17,7 @@ export const blogRouters = new Hono<{
 }>();
 
 type userid = {
-    id:string
+    id: string
 }
 
 
@@ -26,10 +26,10 @@ blogRouters.use("/*", async (c, next) => {
     const user = await verify(authHeader, c.env.JWT_SECRET) as userid;
     if (user) {
         c.set("userId", user.id);
-       await next();
+        await next();
     } else {
         c.status(403);
-       return  c.json({
+        return c.json({
             message: "you have not logged in"
         })
     }
@@ -38,11 +38,11 @@ blogRouters.use("/*", async (c, next) => {
 blogRouters.post('/blog', async (c) => {
     const body = await c.req.json();
     const userId = c.get("userId");
-    const {success} = createBlog.safeParse(body);
-    if(!success){
+    const { success } = createBlog.safeParse(body);
+    if (!success) {
         c.status(411);
         return c.json({
-            message:"wrong information"
+            message: "wrong information"
         })
     }
     const prisma = new PrismaClient({
@@ -54,6 +54,7 @@ blogRouters.post('/blog', async (c) => {
             data: {
                 title: body.title,
                 content: body.content,
+                imagelink:body.imagelink,
                 authorId: Number(userId)
             }
         });
@@ -73,11 +74,11 @@ blogRouters.post('/blog', async (c) => {
 })
 blogRouters.put('/blog', async (c) => {
     const body = await c.req.json();
-    const {success} = updateBlog.safeParse(body);
-    if(!success){
+    const { success } = updateBlog.safeParse(body);
+    if (!success) {
         c.status(411);
         return c.json({
-            message:"wrong information"
+            message: "wrong information"
         })
     }
     const prisma = new PrismaClient({
@@ -121,7 +122,7 @@ blogRouters.get('/blog', async (c) => {
         });
 
         c.status(200);
-       return  c.json(blog);
+        return c.json(blog);
 
     } catch (error) {
         c.status(200);
@@ -130,13 +131,85 @@ blogRouters.get('/blog', async (c) => {
         })
     }
 })
+
+blogRouters.get('/blogdetails/:id', async (c) => {
+    const id = c.req.param('id');
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+    try {
+        const response = await prisma.blog.findFirst({
+            where: {
+                id: Number(id)
+            },
+            select: {
+                content: true,
+                title: true,
+                imagelink:true,
+                createdAT:true,
+                id: true,
+                author: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        })
+        return c.json(response);
+    } catch (error) {
+        c.status(304);
+        return c.json({
+            message: "Some Invalid error has occured"
+        })
+    }
+})
+
+blogRouters.delete('/deleteblog', async (c) => {
+    const body = await c.req.json();
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    try {
+        await prisma.blog.delete({
+            where: {
+                id: body.id
+            }
+        });
+        c.status(200);
+        return c.json({
+            message: "Successfully deleted"
+        })
+
+
+    } catch (error) {
+        c.status(304);
+        return c.json({
+            message: "some Invalid error has occured"
+        })
+    }
+})
+
 blogRouters.get('/blogbulk', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
 
     try {
-        const blogdata = await prisma.blog.findMany();
+        const blogdata = await prisma.blog.findMany({
+            select: {
+                content: true,
+                title: true,
+                imagelink:true,
+                createdAT:true,
+                id: true,
+                author: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        });
         c.status(200);
         return c.json(blogdata)
 

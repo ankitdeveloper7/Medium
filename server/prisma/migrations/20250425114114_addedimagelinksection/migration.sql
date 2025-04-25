@@ -1,0 +1,9 @@
+/*
+  Warnings:
+
+  - Added the required column `imagelink` to the `Blog` table without a default value. This is not possible if the table is not empty.
+
+*/
+-- AlterTable
+ALTER TABLE "Blog" ADD COLUMN     "imagelink" TEXT NOT NULL,
+ALTER COLUMN "updatedAt" DROP DEFAULT;
