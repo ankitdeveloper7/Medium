@@ -7,7 +7,6 @@ export const Mainpage = ()=>{
         <>
         <Header />
         <ContentPage />
-        <Footer />
         </>
     )
 }

@@ -33,6 +33,7 @@ export default function Signup() {
     }
   );
   const data = response.data;
+  localStorage.setItem("token",data);
   setToken(data);
   }
 

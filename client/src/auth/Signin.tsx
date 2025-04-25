@@ -13,6 +13,7 @@ export default function Signin() {
   const[email, setEmail] = useState("");
   const[password, getPassword] = useState("");
   const[token, setToken] = useState("");
+  
 
   function handlesignup(){
     alert("successfu signed up")
@@ -35,6 +36,7 @@ export default function Signin() {
     );
    
     const data = response.data;
+    localStorage.setItem("token",data);
     console.log(data);
     setToken(data);
   }
