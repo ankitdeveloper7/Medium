@@ -7,12 +7,14 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 
 export const ContentPage = () => {
-    const { loading, blog } = useBlog();
+    const {loading, blog } = useBlog();
 
 if(loading){
+   return(
     <>
     <div>Loading.....</div>
     </>
+   )
 }
     return (
         <>

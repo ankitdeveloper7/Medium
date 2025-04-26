@@ -84,7 +84,7 @@ export const BlogEditor = () => {
           </div>
           <div className="p-8 overflow-y-auto">
             <div className='text-xl md:text-3xl max-w-xl text-[#242424] font-[700] pb-2'>{title}</div>
-            <div><img src={image} width="200px" height="200px" /> </div>
+            <div><img src={image} className='w-full my-4' /> </div>
             <div>{renderData(value)}</div>
           </div>
         </div>
