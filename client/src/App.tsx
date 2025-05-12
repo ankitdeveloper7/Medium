@@ -6,7 +6,6 @@ import {Home} from "./pages/Landingpage/Home";
 import { Mainpage } from "./pages/Mainpage";
 import { BlogEditor } from "./pages/BlogEditor";
 import { Auth } from "./auth/Auth";
-import { Stories } from "./pages/UserBlog";
 
 function App() {
   
@@ -22,7 +21,7 @@ function App() {
         <Route path="/blog/:id" element={<Blog />} />
         <Route path="/writeblog" element={<BlogEditor />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/stories" element={<Stories />} />
+        {/* <Route path="/stories" element={<Stories />} /> */}
       </Routes>
       </BrowserRouter>
     </>

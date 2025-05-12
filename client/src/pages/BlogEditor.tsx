@@ -39,7 +39,7 @@ export const BlogEditor = () => {
           Authorization: localStorage.getItem("token")
         }
       })
-      window.open("/blog", "_self")
+      window.open("/", "_self")
   }
   const renderData = (htmlContent: string) => {
     return (

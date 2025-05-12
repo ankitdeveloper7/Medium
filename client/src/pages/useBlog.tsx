@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const useBlog = () => {
     const[loading, setLoading] = useState(true);
-   const[blog, getBlog] = useState([]);
+   const[allblog, getallBlog] = useState([]);
    
        useEffect(()=>{
            async function getdata(){
@@ -14,13 +14,13 @@ export const useBlog = () => {
                        Authorization:localStorage.getItem("token")
                    }
                });
-               getBlog(response.data);
+               getallBlog(response.data);
                setLoading(false);
            };
            getdata();
        })
     return{
        loading,
-       blog
+       allblog
     }
 }
