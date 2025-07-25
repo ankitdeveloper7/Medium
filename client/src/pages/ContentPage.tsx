@@ -101,7 +101,7 @@ export const ContentPage = () => {
               </div>
             )}
           </div>
-          <div className="min-h-screen border-l-1 border-slate-200">
+          <div className="min-h-screen md:border-l-1 border-slate-200">
             <div className="p-6 sticky top-4">
               <div className="font-semibold text-400 text-base">
                 Staff Picks
@@ -110,7 +110,7 @@ export const ContentPage = () => {
                 <SideBlog
                   username={item.author.name}
                   heading={item.title}
-                  date="just now"
+                  date={item.createdAT}
                 />
               ))}
 

@@ -4,13 +4,14 @@ import Stack from "@mui/material/Stack";
 
 type props = {
   username: string;
+  size: number;
 };
-export default function LetterAvatars({ username }: props) {
+export default function LetterAvatars({ username, size }: props) {
   const name = username[0].toUpperCase() || "";
-  const num = 56;
+  const num = size;
   return (
-    <Stack direction="row" spacing={2}>
-      <Avatar sx={{ width: 26, height: 26 }}> {name} </Avatar>
+    <Stack direction="row">
+      <Avatar sx={{ width: num, height: num }}> {name} </Avatar>
     </Stack>
   );
 }

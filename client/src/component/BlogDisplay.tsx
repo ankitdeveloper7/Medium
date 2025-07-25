@@ -53,40 +53,43 @@ export const BlogDisplay = ({
   }
   return (
     <>
-      <div className="flex justify-center">
-        <div className="max-w-3xl  grid grid-cols-4 border-b-1 border-slate-200 py-8">
+      <div className="flex justify-center w-full">
+        <div className="max-w-3xl w-full grid grid-cols-4 border-b border-slate-200 py-8">
           <div className="col-span-3">
-            <div>
-              <div className="inline-block pr-2">
-                <LetterAvatars username={username} />
-              </div>
-              <div className="text-sm font-[400] text-[#242424] inline-block">
+            <div className="flex items-center gap-2">
+              <LetterAvatars username={username} size={26} />
+              <div className="text-sm font-[400] text-[#242424]">
                 {username}
               </div>
             </div>
+
             <div
-              className="text-xl md:text-2xl  text-[#242424] font-[700] cursor-pointer py-1"
+              className="text-xl md:text-2xl text-[#242424] font-[700] cursor-pointer py-1"
               onClick={blogOpen}
             >
               {heading}
             </div>
+
             <div className="truncate text-md font-medium text-slate-400 pb-2">
               {renderData(content.slice(0, 100))}
             </div>
+
             <div className="font-[400] text-sm text-[#6b6b6b] cursor-pointer">
               {createddate}
             </div>
           </div>
+
           <div className="ml-4 relative">
             {!userdetails && <img className="cursor-pointer" src={imagelink} />}
             {userdetails && (
               <button
-                className=" cursor-pointer absolute right-4"
+                className="cursor-pointer absolute right-4"
                 onClick={() => setoption(!option)}
               >
                 <CiMenuKebab size={24} />
               </button>
             )}
+
             {option && (
               <div className="w-42 border border-gray-300 shadow-lg absolute right-[-10px] top-12 bg-white z-50 rounded-md">
                 <div

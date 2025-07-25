@@ -16,7 +16,6 @@ export const BlogEditor = () => {
 
   const update = localStorage.getItem("updatestatus");
   const blogid = localStorage.getItem("blogid");
-  console.log("updatestatus value", update);
 
   useEffect(() => {
     setUpdatestatus(update === "true");
@@ -35,7 +34,7 @@ export const BlogEditor = () => {
       const data = response.data;
       setTitle(data.title);
       setValue(data.content);
-      getimagelink(data.image);
+      getimagelink(data.imagelink);
     }
 
     getdata();
@@ -76,9 +75,6 @@ export const BlogEditor = () => {
   };
 
   async function updateData() {
-    console.log("the value of updatd title is ", title);
-    console.log("the value of the updated content is ", value);
-    console.log("the value of the image link is ", image);
     const response = await axios.put(
       `${API_URL}/api/v1/blog/${blogid}`,
       {
@@ -92,7 +88,10 @@ export const BlogEditor = () => {
         },
       }
     );
-    console.log("updated response", response.data);
+    setTitle(" ");
+    setValue(" ");
+    getimagelink(" ");
+    localStorage.removeItem("blogid");
     window.open("/mainpage", "_self");
   }
 

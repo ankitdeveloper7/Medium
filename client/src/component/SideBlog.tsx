@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import LetterAvatars from "./Avatar";
+import { Calculatedate } from "./Ccalutedate";
 
 interface Props {
   username: string;
@@ -6,13 +8,20 @@ interface Props {
   date: string;
 }
 export const SideBlog = ({ username, heading, date }: Props) => {
+  const [createddate, setdate] = useState("");
+
+  useEffect(() => {
+    const data = Calculatedate(date);
+    setdate(data);
+  }, [date]);
+
   return (
     <>
-      <div className="flex justify-center py-4">
-        <div className="max-w-full">
+      <div className="flex justify-center py-4 w-full">
+        <div className="w-full">
           <div>
-            <div className="inline-block pr-2">
-              <LetterAvatars username={username} />
+            <div className="inline-block pr-1">
+              <LetterAvatars username={username} size={26} />
             </div>
             <div className="text-sm font-[400] text-[#242424] inline-block">
               {username}
@@ -22,7 +31,7 @@ export const SideBlog = ({ username, heading, date }: Props) => {
             {heading}
           </div>
           <div className="font-[400] text-sm text-[#6b6b6b] cursor-pointer">
-            {date}
+            {createddate}
           </div>
         </div>
       </div>

@@ -36,10 +36,10 @@ export default function Signup() {
       }
     );
     const data = response.data;
-    localStorage.setItem("username", data.username.name);
-    localStorage.setItem("token", data.jwt);
+    localStorage.setItem("username", username);
+    localStorage.setItem("token", data);
     console.log(data);
-    setToken(data.jwt);
+    setToken(data);
   }
 
   if (token) {

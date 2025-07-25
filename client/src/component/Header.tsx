@@ -76,7 +76,7 @@ export const Header = () => {
                 className="cursor-pointer"
                 onClick={() => setoption(!option)}
               >
-                <LetterAvatars username={username} />
+                <LetterAvatars username={username} size={46} />
               </button>
               {option && (
                 <div className="w-42 border border-gray-300 shadow-lg absolute right-[-10px] top-12 bg-white z-50 rounded-md">
