@@ -137,7 +137,7 @@ export const BlogEditor = () => {
               </button>
             ) : (
               <button
-                className="bg-black text-white w-full  p-2 text-lg cursor-pointer mb-2 "
+                className="bg-black text-white w-full  p-2 text-lg cursor-pointer my-2 "
                 onClick={sendData}
               >
                 Publish
