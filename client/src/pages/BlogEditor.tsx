@@ -111,14 +111,7 @@ export const BlogEditor = () => {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-            <div className="mb-5">
-              <input
-                type="text"
-                placeholder="Image link of the blog"
-                className="border text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5"
-                onChange={(e) => getimagelink(e.target.value)}
-              />
-            </div>
+
             <div className="flex-grow">
               <ReactQuill
                 theme="snow"
@@ -126,6 +119,14 @@ export const BlogEditor = () => {
                 onChange={setValue}
                 modules={modules}
                 className="h-8/10"
+              />
+            </div>
+            <div className="my-2">
+              <input
+                type="text"
+                placeholder="Image link of the blog"
+                className="border text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5"
+                onChange={(e) => getimagelink(e.target.value)}
               />
             </div>
             <div className="my-2">
@@ -146,7 +147,7 @@ export const BlogEditor = () => {
               )}
             </div>
           </div>
-          <div className="p-8 overflow-y-auto">
+          <div className="p-8 overflow-y-auto hidden sm:contents">
             <div className="text-xl md:text-3xl max-w-xl text-[#242424] font-[700] pb-2">
               {title}
             </div>
