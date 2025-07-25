@@ -63,7 +63,7 @@ export default function Blog() {
       ) : (
         <div className="flex justify-center py-6">
           <div className="max-w-3xl mx-5 ">
-            <div className="sm:text-4xl font-[700] py-4 md:text-[48px]">
+            <div className="text-3xl font-[700] py-4 md:text-[48px]">
               {blog.title}{" "}
             </div>
             <div>
