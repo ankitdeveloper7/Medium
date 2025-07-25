@@ -99,7 +99,7 @@ export const ContentPage = () => {
               </div>
             )}
           </div>
-          <div className="min-h-screen md:border-l-1 border-slate-200">
+          <div className="min-h-screen md:border-l-1 border-slate-200 hidden md:contents">
             <div className="p-6 sticky top-4">
               <div className="font-semibold text-400 text-base">
                 Staff Picks

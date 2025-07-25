@@ -19,7 +19,7 @@ export const Auth = () => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <div>{login ? <Signin /> : <Signup />}</div>
+        <div className="px-2">{login ? <Signin /> : <Signup />}</div>
         <div className="hidden md:contents">
           <Quotes />
         </div>

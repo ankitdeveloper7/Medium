@@ -22,10 +22,11 @@ export const Landingheader = () => {
               <a className="pr-8" href="#">
                 Write
               </a>
+
+              <a className="pr-8" href="#">
+                Sign in
+              </a>
             </span>
-            <a className="pr-8" href="#">
-              Sign in
-            </a>
             <button
               className="text-white bg-black rounded-full px-4 py-2 cursor-pointer"
               onClick={openSignup}
