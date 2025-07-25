@@ -100,7 +100,7 @@ export const BlogEditor = () => {
     <>
       <div className="flex flex-col min-h-screen">
         <Header />
-        <div className="flex-grow grid grid-cols-1 md:grid-cols-2 mx-8">
+        <div className="flex-grow grid grid-cols-1 md:grid-cols-2 sm:mx-8">
           <div className="border-r border-slate-200 flex flex-col px-2">
             <div className="mb-5">
               <input
