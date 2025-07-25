@@ -92,6 +92,7 @@ export const BlogEditor = () => {
     setTitle(" ");
     setValue(" ");
     getimagelink(" ");
+    console.log("the reponse value is ", response.data);
     localStorage.removeItem("blogid");
     window.open("/mainpage", "_self");
   }
