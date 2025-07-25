@@ -2,21 +2,19 @@ import { useRecoilValue } from "recoil";
 import { BlogDisplay } from "../component/BlogDisplay";
 import { SideBlog } from "../component/SideBlog";
 import "react-loading-skeleton/dist/skeleton.css";
-import { storiesAtom, userBlogAtom, usernameAtom } from "../store/atom";
+import { storiesAtom, userBlogAtom } from "../store/atom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { API_URL } from "../API_URL";
+// import { API_URL } from "../API_URL";
 
 export const ContentPage = () => {
   const [loading, setLoading] = useState(true);
-  // const[blog]
-  // const {loading, allblog } = useBlog();
   const [blog, getBlog] = useState([]);
   const validuser = useRecoilValue(storiesAtom);
   const userStories = useRecoilValue(userBlogAtom);
   const [userblog, setuserblog] = useState([]);
-  const username = useRecoilValue(usernameAtom);
-  console.log("this is the value of username", username);
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+
   useEffect(() => {
     setuserblog(userStories);
   }, [userStories]);

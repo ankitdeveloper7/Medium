@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { API_URL } from "../API_URL";
+// import { API_URL } from "../API_URL";
 import { Header } from "../component/Header";
 import { Calculatedate } from "../component/Ccalutedate";
 import { Footer } from "../component/Footer";
-import { Landingfooter } from "./Landingpage/Landingfooter";
 import LetterAvatars from "../component/Avatar";
 
 export default function Blog() {
@@ -19,6 +18,7 @@ export default function Blog() {
     content: "",
   });
   const [loading, setLoading] = useState(true);
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   const { id } = useParams();
 

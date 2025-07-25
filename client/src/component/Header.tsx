@@ -2,7 +2,7 @@ import { SlNote } from "react-icons/sl";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { storiesAtom, userBlogAtom } from "../store/atom";
-import { API_URL } from "../API_URL";
+// import { API_URL } from "../API_URL";
 import axios from "axios";
 import LetterAvatars from "./Avatar";
 
@@ -11,6 +11,7 @@ export const Header = () => {
 
   const setblog = useSetRecoilState(userBlogAtom);
   const stories = useSetRecoilState(storiesAtom);
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   const username = localStorage.getItem("username") || " ";
 

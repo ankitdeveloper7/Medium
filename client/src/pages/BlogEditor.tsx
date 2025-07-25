@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Header } from "../component/Header";
-import { API_URL } from "../API_URL";
+// import { API_URL } from "../API_URL";
 import axios from "axios";
 // @ts-ignore
 import ImageResize from "quill-image-resize-module-react";
@@ -13,6 +13,7 @@ export const BlogEditor = () => {
   const [value, setValue] = useState("");
   const [image, getimagelink] = useState("");
   const [updatestatus, setUpdatestatus] = useState(false);
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   const update = localStorage.getItem("updatestatus");
   const blogid = localStorage.getItem("blogid");

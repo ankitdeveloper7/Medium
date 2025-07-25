@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Calculatedate } from "./Ccalutedate";
 import { CiMenuKebab } from "react-icons/ci";
 import LetterAvatars from "./Avatar";
-// import { useSetRecoilState } from "recoil";
-// import { blogeditAtom, blogeditstatusAtom } from "../store/atom";
+
 interface Props {
   id: number;
   username: string;
@@ -14,6 +13,7 @@ interface Props {
   userdetails: boolean;
   deleteblog: () => void;
 }
+
 export const BlogDisplay = ({
   id,
   username,
