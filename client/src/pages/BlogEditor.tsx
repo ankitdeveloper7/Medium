@@ -1,51 +1,100 @@
-
-import { useState } from 'react';
-import ReactQuill, { Quill } from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { Header } from '../component/Header';
-import { API_URL } from '../API_URL';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import ReactQuill, { Quill } from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { Header } from "../component/Header";
+import { API_URL } from "../API_URL";
+import axios from "axios";
 // @ts-ignore
-import ImageResize from 'quill-image-resize-module-react';
-Quill.register('modules/imageResize', ImageResize);
+import ImageResize from "quill-image-resize-module-react";
+Quill.register("modules/imageResize", ImageResize);
 
 export const BlogEditor = () => {
   const [title, setTitle] = useState("");
-  const [value, setValue] = useState('');
-  const[image, getimagelink] = useState("");
+  const [value, setValue] = useState("");
+  const [image, getimagelink] = useState("");
+  const [updatestatus, setUpdatestatus] = useState(false);
+
+  const update = localStorage.getItem("updatestatus");
+  const blogid = localStorage.getItem("blogid");
+  console.log("updatestatus value", update);
+
+  useEffect(() => {
+    setUpdatestatus(update === "true");
+  }, [update]);
+
+  useEffect(() => {
+    async function getdata() {
+      const response = await axios.get(
+        `${API_URL}/api/v1/blogdetails/${blogid}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+      const data = response.data;
+      setTitle(data.title);
+      setValue(data.content);
+      getimagelink(data.image);
+    }
+
+    getdata();
+  }, [blogid]);
 
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
+      ["bold", "italic", "underline", "strike"],
       [{ color: [] }, { background: [] }],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['link', 'image'],
-      ['clean']
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link", "image"],
+      ["clean"],
     ],
     imageResize: {
-      parchment: Quill.import('parchment')
-    }
+      parchment: Quill.import("parchment"),
+    },
   };
 
   async function sendData() {
-    await axios.post(`${API_URL}/api/v1/blog`,{
-      title: title,
-      content: value,
-      imagelink:image
-    },
+    await axios.post(
+      `${API_URL}/api/v1/blog`,
+      {
+        title: title,
+        content: value,
+        imagelink: image,
+      },
       {
         headers: {
-          Authorization: localStorage.getItem("token")
-        }
-      })
-      window.open("/", "_self")
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    );
+    window.open("/mainpage", "_self");
   }
   const renderData = (htmlContent: string) => {
-    return (
-      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-    );
+    return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
   };
+
+  async function updateData() {
+    console.log("the value of updatd title is ", title);
+    console.log("the value of the updated content is ", value);
+    console.log("the value of the image link is ", image);
+    const response = await axios.put(
+      `${API_URL}/api/v1/blog/${blogid}`,
+      {
+        title: title,
+        content: value,
+        imagelink: image,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    );
+    console.log("updated response", response.data);
+    window.open("/mainpage", "_self");
+  }
 
   return (
     <>
@@ -56,6 +105,7 @@ export const BlogEditor = () => {
             <div className="mb-5">
               <input
                 type="text"
+                value={title}
                 placeholder="Write your Blog title here"
                 className="outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full text-xl p-2.5"
                 onChange={(e) => setTitle(e.target.value)}
@@ -78,18 +128,34 @@ export const BlogEditor = () => {
                 onChange={(e) => getimagelink(e.target.value)}
               />
             </div>
-            <button className="bg-black text-white w-full  p-2 text-lg cursor-pointer mb-2 " onClick={sendData}>
-              Publish
-            </button>
+
+            {updatestatus ? (
+              <button
+                className="bg-black text-white w-full  p-2 text-lg cursor-pointer mb-2 "
+                onClick={updateData}
+              >
+                Update
+              </button>
+            ) : (
+              <button
+                className="bg-black text-white w-full  p-2 text-lg cursor-pointer mb-2 "
+                onClick={sendData}
+              >
+                Publish
+              </button>
+            )}
           </div>
           <div className="p-8 overflow-y-auto">
-            <div className='text-xl md:text-3xl max-w-xl text-[#242424] font-[700] pb-2'>{title}</div>
-            <div><img src={image} className='w-full my-4' /> </div>
+            <div className="text-xl md:text-3xl max-w-xl text-[#242424] font-[700] pb-2">
+              {title}
+            </div>
+            <center>
+              <img src={image} className="size-40 my-4" />{" "}
+            </center>
             <div>{renderData(value)}</div>
           </div>
         </div>
       </div>
-
     </>
-  )
-}
+  );
+};
