@@ -128,21 +128,23 @@ export const BlogEditor = () => {
                 className="h-8/10"
               />
             </div>
-            {updatestatus ? (
-              <button
-                className="bg-black text-white w-full  p-2 text-lg cursor-pointer my-2 "
-                onClick={updateData}
-              >
-                Update
-              </button>
-            ) : (
-              <button
-                className="bg-black text-white w-full  p-2 text-lg cursor-pointer my-2 "
-                onClick={sendData}
-              >
-                Publish
-              </button>
-            )}
+            <div className="my-2">
+              {updatestatus ? (
+                <button
+                  className="bg-black text-white w-full  p-2 text-lg cursor-pointer"
+                  onClick={updateData}
+                >
+                  Update
+                </button>
+              ) : (
+                <button
+                  className="bg-black text-white w-full  p-2 text-lg cursor-pointer"
+                  onClick={sendData}
+                >
+                  Publish
+                </button>
+              )}
+            </div>
           </div>
           <div className="p-8 overflow-y-auto">
             <div className="text-xl md:text-3xl max-w-xl text-[#242424] font-[700] pb-2">
