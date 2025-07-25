@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { GoogleLoginButton } from "../component/GoogleLoginButton";
 import { useSetRecoilState } from "recoil";
 import { authvalueAtom } from "../store/atom";
-import { API_URL } from "../API_URL";
+// import { API_URL } from "../API_URL";
 import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,6 +12,7 @@ export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, getPassword] = useState("");
   const [token, setToken] = useState("");
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   function handlesignup() {
     alert("successfu signed up");

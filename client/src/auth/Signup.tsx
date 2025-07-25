@@ -5,7 +5,7 @@ import { useSetRecoilState } from "recoil";
 import { authvalueAtom } from "../store/atom";
 import { useState } from "react";
 import axios from "axios";
-import { API_URL } from "../API_URL";
+// import { API_URL } from "../API_URL";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function Signup() {
@@ -13,6 +13,7 @@ export default function Signup() {
   const [email, getEmail] = useState("");
   const [password, getPassword] = useState("");
   const [token, setToken] = useState("");
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   function handlesignup() {
     alert("successful signed up");
