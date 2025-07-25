@@ -76,7 +76,7 @@ export const BlogEditor = () => {
   };
 
   async function updateData() {
-    const response = await axios.put(
+    await axios.put(
       `${API_URL}/api/v1/blog/${blogid}`,
       {
         title: title,
@@ -92,7 +92,6 @@ export const BlogEditor = () => {
     setTitle(" ");
     setValue(" ");
     getimagelink(" ");
-    console.log("the reponse value is ", response.data);
     localStorage.removeItem("blogid");
     window.open("/mainpage", "_self");
   }
