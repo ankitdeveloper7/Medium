@@ -111,6 +111,14 @@ export const BlogEditor = () => {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
+            <div className="mb-5">
+              <input
+                type="text"
+                placeholder="Image link of the blog"
+                className="border text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5"
+                onChange={(e) => getimagelink(e.target.value)}
+              />
+            </div>
             <div className="flex-grow">
               <ReactQuill
                 theme="snow"
@@ -120,18 +128,9 @@ export const BlogEditor = () => {
                 className="h-8/10"
               />
             </div>
-            <div className="mb-5">
-              <input
-                type="text"
-                placeholder="Image link of the blog"
-                className="border text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5"
-                onChange={(e) => getimagelink(e.target.value)}
-              />
-            </div>
-
             {updatestatus ? (
               <button
-                className="bg-black text-white w-full  p-2 text-lg cursor-pointer mb-2 "
+                className="bg-black text-white w-full  p-2 text-lg cursor-pointer my-2 "
                 onClick={updateData}
               >
                 Update
