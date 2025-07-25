@@ -6,6 +6,7 @@ import { Header } from "../component/Header";
 import { Calculatedate } from "../component/Ccalutedate";
 import { Footer } from "../component/Footer";
 import LetterAvatars from "../component/Avatar";
+import CircularColor from "../component/Loading";
 
 export default function Blog() {
   const [blog, setBlog] = useState({
@@ -59,7 +60,9 @@ export default function Blog() {
     <>
       <Header />
       {loading ? (
-        <div>loading.....</div>
+        <div>
+          <CircularColor />
+        </div>
       ) : (
         <div className="flex justify-center py-6">
           <div className="max-w-3xl mx-5 ">

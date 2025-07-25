@@ -5,6 +5,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { storiesAtom, userBlogAtom } from "../store/atom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CircularColor from "../component/Loading";
 // import { API_URL } from "../API_URL";
 
 export const ContentPage = () => {
@@ -36,7 +37,9 @@ export const ContentPage = () => {
   if (loading) {
     return (
       <>
-        <div>Loading.....</div>
+        <div>
+          <CircularColor />{" "}
+        </div>
       </>
     );
   }
