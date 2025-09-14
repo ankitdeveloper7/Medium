@@ -21,7 +21,7 @@ export const Home = () => {
 const Index = () => {
   function onpenLogin() {
     {
-      window.open("/mainpage", "_self");
+     window.open("/auth", "_self");
     }
   }
   return (
